@@ -1,0 +1,383 @@
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+  --primary-color: #ee4d2d;
+  --primary-color-gba: rgb(238, 77, 45);
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+ font-size: 62.5%;  
+ line-height: 1.6rem;
+ font-family: 'Roboto', sans-serif;
+ box-sizing: border-box ;
+ scroll-behavior: smooth;
+}
+
+.grids {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.grids__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* modal */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(1px);
+}
+
+.modal__body {
+  background: var(--white-color);
+  border-radius: 5px;
+  margin: auto;
+  position: relative;
+}
+
+.btn {
+  font-size: 1.7rem;
+  padding: 5px 15px;
+  border: none;
+  display: inline-block;
+  background: var(--white-color);
+  border-radius: 2px;
+  font-weight: 300;
+}
+
+.btn--primary {
+  background-color: #ee4d2d;
+  color: var(--white-color);
+}
+
+.header {
+  height: 120px;
+  background: linear-gradient(-180deg,#f53d2d,#f63);
+}
+
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headear__navbar--list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 4px;
+}
+
+.header__navbar--item {
+  margin: 0 8px;
+  position: relative;
+  user-select: none;
+}
+
+
+.header__navbar--item,
+.header__navbar--item-link {
+  font-size: 1.4rem;
+  color: var(--white-color);
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 300;
+}
+
+.header__navbar--item,
+.header__navbar--item-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header__navbar--item:hover,
+.header__navbar--icon:hover,
+.header__navbar--item-link:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.708);
+}
+
+.header__navbar--item:hover .header__notify {
+  display: block;
+}
+
+.header__navbar--item:hover .header--qr {
+  display: block;
+}
+
+.header__navbar--item--strong {
+  font-weight: 400;
+}
+
+.header__navbar--item--separate::after {
+  content:  "";
+  display: block;
+  position: absolute;
+  border-left: 1px solid #FB9086;
+  height: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -9px;
+}
+
+.header__navbar--item--link {
+  color: var(--white-color) ;
+  text-decoration: none;
+}
+
+.header__navbar--icon {
+  font-size: 1.8rem;
+  margin: 0 4px;
+}
+
+.header__navbar--title--no-pointer {
+  color: var(--white-color);
+  cursor: text;
+}
+
+/* header qr code */
+
+.header--qr {
+  background: var(--white-color);
+  width: 186px;
+  position: absolute;
+  top: 120%;
+  left: 0;
+  padding: 8px;
+  border-radius: 2px;
+  display: none;
+}
+
+.header--qr::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.header__pr-img {
+  width: 100%;
+}
+
+.header__qr-link:first-child {
+  margin-left: 11px;
+}
+
+.header__qr-link:nth-child(2) {
+  margin-right: 11px;
+}
+
+.header__qr-apps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__qr-download--img {
+  height: 15px;
+}
+
+/* header notify */
+.header__notify {
+  position: absolute;
+  top: 150%;
+  right: 0;
+  width: 404px;
+  background-color: var(--white-color);
+  border: 1px solid #d3d3d3;
+  transform-origin: calc(100% - 20px) top;
+  animation: headerNotiGrow ease-in-out .25s;
+  will-change: opacity, transform;
+  display: none;
+}
+
+.header__notify::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.header__notify::after {
+  content: "";
+  border-bottom: 10px solid var(--white-color);
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  position: absolute;
+  top: -20px;
+  right: 20px;
+}
+
+.header__notify--header {
+  height: 40px;
+  background-color: var(--white-color);
+}
+
+.header__notify--header h3 {
+  color: #ccc;
+  margin: 0 0 0 12px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 40px;
+  user-select: none;
+}
+
+.header__notify--list {
+  padding-left: 0;
+}
+
+.header__notify--item {
+  list-style: none;
+}
+
+.header__notify--item:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.header__notify--item--viewed {
+  background-color: rgb(238, 77, 45, 0.1);
+}
+
+.header__notify--link {
+  display: flex;
+  padding: 12px;
+  text-decoration: none;
+
+}
+.header__notify--img {
+  width: 48px;
+  object-fit: contain;
+}
+
+.header__notify--info {
+  margin-left: 12px;
+}
+
+.header__notify--name {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 1.8rem;
+  color: var(--black-color);
+}
+
+.header__notify--desc {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #bbb;
+}
+
+.header__notify--footer {
+  border-top: 1px solid #eee;
+  text-align: center;
+  padding:8px 16px;
+}
+
+.header__notify--footer a {
+  text-decoration: none;
+  color: var(--black-color);
+}
+
+/* auth */
+.auth-form__container {
+  padding:0 32px;
+  width: 500px;
+}
+
+.auth-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-form__heading {
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.auth-form__switch--btn {
+  color: #f53d2d;
+  font-size: 1.6rem;
+}
+
+.auth-form__group {
+  padding: 5px 0px;
+}
+
+.auth-form__inout {
+  width: 100%;
+  border: 1px solid #bbb;
+  padding: 8px 10px;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.auth-form__aside {
+  text-align: center;
+  font-size: 1.2rem;
+
+}
+
+.auth-form__polyci-link {
+  color: #f53d2d;
+}
+
+.auth-form__controls {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.auth-form__socials {
+  background-color: #eee;
+  padding: 8px 32px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.btn--with-icon {
+  width: 48%;
+}
+
+
+
+@keyframes headerNotiGrow {
+  from {
+      transform: scale(0);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
