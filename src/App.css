@@ -350,10 +350,10 @@ html {
 }
 
 .auth-form__controls {
-  padding-top: 60px;
+  /* padding-top: 60px;
   padding-bottom: 20px;
   display: flex;
-  justify-content: end;
+  justify-content: end; */
 }
 
 .auth-form__socials {
