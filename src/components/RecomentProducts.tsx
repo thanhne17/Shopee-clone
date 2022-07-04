@@ -16,7 +16,7 @@ const RecomentProducts = (props: Props) => {
     }, [])
 
     return (
-        <div className='bg-[#f5f5f5] pt-10'>
+        <div className='bg-[#f5f5f5] py-10'>
             <div className="grids">
                 <header className='bg-[#ffffff] p-8'>
                     <h3 className='text-3xl text-[#ee4d2d] font-semibold'>GỢI Ý HÔM NAY</h3>

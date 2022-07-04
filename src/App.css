@@ -138,6 +138,17 @@ html {
   right: -9px;
 }
 
+.footer_separate::after {
+  content:  "";
+  display: block;
+  position: absolute;
+  border-left: 1px solid #d3d3d3;
+  height: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+}
+
 .header__navbar--item--link {
   color: var(--white-color) ;
   text-decoration: none;

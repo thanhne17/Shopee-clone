@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 
 type Props = {}
 
@@ -20,6 +21,7 @@ const AuthLayout = (props: Props) => {
           <Outlet />
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import HomePage from '../page/HomePage'
 
@@ -11,6 +12,7 @@ const SiteLayout = (props: Props) => {
         <Header />
         <HomePage />
         <Outlet />
+        <Footer />
     </div>
   )
 }
