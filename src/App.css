@@ -7,7 +7,9 @@
 }
 
 * {
-  box-sizing: inherit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -226,10 +228,10 @@ html {
 .header__notify::before {
   content: '';
   position: absolute;
-  top: -10px;
+  top: -20px;
   left: 0;
   width: 100%;
-  height: 20px;
+  height: 50px;
 }
 
 .header__notify::after {

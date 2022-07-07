@@ -1,9 +1,68 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { async } from '@firebase/util'
+import { auth } from '../../firebase/index'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 type Props = {}
 
 const SignUp = (props: Props) => {
+
+  const navigate = useNavigate();
+
+
+  const handlerLoginFacebook = () => {
+    const prodider = new FacebookAuthProvider();
+    signInWithPopup(auth, prodider).then((result) => {
+      console.log(result);
+
+      const id = result.user.uid;
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const image = result.user.photoURL;
+      // console.log(result.user);
+
+      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
+    }).then(() => {
+
+      navigate("/");
+    }).catch((error) => {
+      console.log(error);
+
+    });
+  }
+  const handlerLoginGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then((result) => {
+      // console.log(result);
+      const id = result.user.uid;
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const image = result.user.photoURL;
+
+      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));      
+
+    }).then(() => {
+
+      navigate("/");
+    })
+      .catch((error) => {
+        console.log(error);
+
+      });
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("user is empty");
+
+    } else {
+      console.log("unauthorized");
+
+    }
+
+  })
+
   return (
     <div className="p-10 bg-white rounded-md w-[400px] h-[430px]">
       <header>

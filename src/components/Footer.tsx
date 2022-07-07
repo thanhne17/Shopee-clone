@@ -133,29 +133,29 @@ const Footer = (props: Props) => {
                 <div className="flex justify-between pt-12">
                     <h3 className='text-2xl text-[#0000008a]'>© 2022 Shopee. Tất cả các quyền được bảo lưu.</h3>
                     <p className='w-[70%] text-center text-2xl text-[#0000008a]'>Quốc gia & Khu vực: <span className='footer_separate relative p-2'>Singapore</span>
-                        <span className='footer_separate relative p-2'>Việt Nam</span>
-                        <span className='footer_separate relative p-2'>India</span>
-                        <span className='footer_separate relative p-2'>ThaiLand</span>
-                        <span className='footer_separate relative p-2'>ThaiLand</span>
-                        <span className='footer_separate relative p-2'>ThaiLand</span>
-                        <span className='footer_separate relative p-2'>ThaiLand</span>
-                        <span className='footer_separate relative p-2'>ThaiLand</span>
-                        <span className='footer_separate relative inline-block p-2'>China</span>
-                        <span className='footer_separate relative inline-block p-2'>Japan</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className='footer_separate relative inline-block p-2'>Korea</span>
-                        <span className=' inline-block p-2'>Malaysia</span>
+                        <span className='footer_separate relative px-2'>Việt Nam</span>
+                        <span className='footer_separate relative px-2'>India</span>
+                        <span className='footer_separate relative px-2'>ThaiLand</span>
+                        <span className='footer_separate relative px-2'>ThaiLand</span>
+                        <span className='footer_separate relative px-2'>ThaiLand</span>
+                        <span className='footer_separate relative px-2'>ThaiLand</span>
+                        <span className='footer_separate relative px-2'>ThaiLand</span>
+                        <span className='footer_separate relative inline-block px-2'>China</span>
+                        <span className='footer_separate relative inline-block px-2'>Japan</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className='footer_separate relative inline-block px-2'>Korea</span>
+                        <span className=' inline-block px-2'>Malaysia</span>
                     </p>
                 </div>
                 <div className="flex justify-center h-[140px] items-center">
                     <span className='footer_separate relative px-3'><a className='text-2xl text-[#0000008a]' href="">CHÍNH SÁCH BẢO MẬT</a></span>
                     <span className='footer_separate relative px-3'><a className='text-2xl text-[#0000008a]' href="">QUY CHẾ HOẠT ĐỘNG</a></span>
                     <span className='footer_separate relative px-3'><a className='text-2xl text-[#0000008a]' href="">CHÍNH SÁCH VẬN CHUYỂN</a></span>
-                    <span className='footer_separate relative px-3'><a className='text-2xl text-[#0000008a]' href="">CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</a></span>
+                    <span className='px-3'><a className='text-2xl text-[#0000008a]' href="">CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</a></span>
                 </div>
                 <div className="w-[90%] mx-auto">
                     <p className='text-center text-[#000000a6] leading-loose text-xl'>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn</p>

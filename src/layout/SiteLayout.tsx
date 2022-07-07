@@ -10,7 +10,6 @@ const SiteLayout = (props: Props) => {
   return (
     <div>
         <Header />
-        <HomePage />
         <Outlet />
         <Footer />
     </div>

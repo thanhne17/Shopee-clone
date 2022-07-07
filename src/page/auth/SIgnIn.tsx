@@ -41,12 +41,8 @@ const SIgnIn = (props: Props) => {
       const name = result.user.displayName;
       const email = result.user.email;
       const image = result.user.photoURL;
-      console.log(result.user);
 
-      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
-
-      console.log(result);
-      
+      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));      
 
     }).then(() => {
 

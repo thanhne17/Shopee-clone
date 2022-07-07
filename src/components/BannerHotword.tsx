@@ -11,6 +11,7 @@ const BannerHotword = (props: Props) => {
 
     const handScrollRight = () => {
         const maxScrollLeft = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
+        
 
         if (sliderRef.current.scrollLeft < maxScrollLeft) {
             smoothSrolling(
@@ -53,7 +54,7 @@ const BannerHotword = (props: Props) => {
     return (
         <div className=" grids">
             <div className="flex my-12 h-[235px]" draggable="false">
-                <div ref={sliderRef} draggable="true" className="flex w-[1000px] overflow-hidden h-full ">
+                <div ref={sliderRef} draggable="true" className="flex overflow-hidden h-full ">
                     {slide.map((item, index) => {
                         return (
                             <div
@@ -61,7 +62,7 @@ const BannerHotword = (props: Props) => {
                                 className="item grow basis-[100%] shrink-0 relative"
                                 key={index}
                             >
-                                <img className='rounded select-none h-[235px] w-full' src={item.imgUrl} alt="" draggable="false" />
+                                <img className='rounded w-[795px] select-none h-[235px] w-full' src={item.imgUrl} alt="" draggable="false" />
                                 <div className="p-4 cursor-pointer duration-300 active:scale-125 hover:translate-x-[10px] absolute top-[50%] translate-y-[-50%] right-[10px]">
                                     <i onClick={handScrollRight} className="opacity-20 hover:opacity-100 text-5xl text-white fa-solid fa-circle-arrow-right"></i>
                                 </div>
