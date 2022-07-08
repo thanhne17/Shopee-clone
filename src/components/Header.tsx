@@ -92,16 +92,16 @@ const Header = (props: Props) => {
                         {status  ? (
                             <li className="inline-block flex items-center group relative cursor-default">
                                 <img className=' w-[25px] rounded-full' src={user?.image} alt="" />
-                                <span className='text-white pl-2 text-lg'>{user?.name}</span>
+                                <span className='text-white pl-2 text-2xl font-medium'>{user?.name}</span>
 
-                                <div className="header__notify z-10 shadow-xl group-hover:block">
+                                <div className="header__user z-10 shadow-xl group-hover:block">
                                     <ul className=''>
-                                        <li className='p-4 hover:bg-[#eaeaea] duration-300'><a className='text-xl hover:text-[#ad1] duration-300' href="#">Tài khoản của tôi</a></li>
-                                        <li className='p-4 hover:bg-[#eaeaea] duration-300'><a className='text-xl hover:text-[#ad1] duration-300' href="#">Đơn mua</a></li>
+                                        <li className='p-4 hover:bg-[#eaeaea] duration-300 cursor-pointer hover:text-[#ad1] duration-100'><NavLink className='text-2xl block w-full' to="/user/profile">Tài khoản của tôi</NavLink></li>
+                                        <li className='p-4 hover:bg-[#eaeaea] duration-300 cursor-pointer hover:text-[#ad1] duration-100'><NavLink className='text-2xl block w-full' to="/user/cart">Đơn mua</NavLink></li>
                                         <li onClick={() => {
                                             setStatus(false)
                                             logOut()
-                                        }} className='p-4 hover:bg-[#eaeaea] duration-300'><p className='text-xl hover:text-[#ad1] duration-300'>Đăng xuất</p></li>
+                                        }} className='p-4 hover:bg-[#eaeaea] duration-300 cursor-pointer hover:text-[#ad1] duration-100'><p className='text-2xl block w-full'>Đăng xuất</p></li>
                                     </ul>
                                 </div>
                             </li>

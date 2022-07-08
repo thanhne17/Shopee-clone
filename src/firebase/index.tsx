@@ -5,6 +5,8 @@ import 'firebase/analytics';
 import  'firebase/auth';
 import 'firebase/firestore';
 import { FacebookAuthProvider, fetchSignInMethodsForEmail, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signInWithPopup, signOut } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,9 +20,20 @@ const firebaseConfig = {
   measurementId: "G-2MBWH00ZLP"
 };
 
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+const db = getDatabase();
+const starCountRef = ref(db, 'product');
+onValue(starCountRef, (snapshot) => {
+  const data = snapshot.val();
+  console.log(data);
+  
+  // updateStarCount(postElement, data);
+});
+
 
 export const auth = getAuth(app);
 

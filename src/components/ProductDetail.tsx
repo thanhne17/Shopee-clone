@@ -112,13 +112,29 @@ const ProductDetail = (props: Props) => {
                 </div>
             </div>
             <div className="grids mx-auto py-12">
-                <div className="bg-white p-12">
-                    <a className='' href="">
-                        <div className="w-[6rem] h-[6rem] ">
-                            <img className='rounded-full' src={product?.brand_sale_brand_custom_logo} alt="" />
+                <div className="bg-white p-12 flex">
+                    <div className="flex items-center shop relative basis-2/5">
+                        <a className='' href="">
+                            <div className="w-[6rem] h-[6rem]">
+                                <img className='rounded-full border border-2' src={product?.brand_sale_brand_custom_logo} alt="" />
+                            </div>
+                        </a>
+                        <div className="pl-4">
+                            <p className='text-2xl font-semibold'>{product?.brand_name}</p>
+                            <span>Online 7 phút trước</span>
+                            <p className='text-[#ee4d2d] rounded mr-5 text-xl bg-[#ff57221a] mt-4 px-[20px] h-[48px] min-w-[80px] max-w-[250px] flex items-center border border-[#ee4d2d] cursor-pointer hover:bg-[#ffc5b22e]'><i className="fa-solid fa-shop pr-3"></i>Xem shop</p>
                         </div>
-                    </a>
+                    </div>
+                    <div className="flex-1 grid grid-cols-3 place-items-center">
+                        <p className='text-xl text-[#757575] font-normal'>Đánh giá: <span className='text-[#ee4d2d]'>{product?.stock}</span></p>
+                        <p className='text-xl text-[#757575] font-normal'>Tỉ lệ phản hồi: <span className='text-[#ee4d2d]'>95%</span></p>
+                        <p className='text-xl text-[#757575] font-normal'>Tham gia: <span className='text-[#ee4d2d]'>17 tháng trước</span></p>
+                        <p className='text-xl text-[#757575] font-normal'>Sản phẩm: <span className='text-[#ee4d2d]'>61</span></p>
+                        <p className='text-xl text-[#757575] font-normal'>Thời gian phản hồi: <span className='text-[#ee4d2d]'>Trong vài giờ</span></p>
+                        <p className='text-xl text-[#757575] font-normal'>Người theo dõi: <span className='text-[#ee4d2d]'>44.4k</span></p>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
