@@ -25,35 +25,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const db = getDatabase();
-const starCountRef = ref(db, 'product');
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  console.log(data);
-  
-  // updateStarCount(postElement, data);
-});
-
-
 export const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
-
 export const logOut= () => {
   const confirm = window.confirm("You want to Logout ?");
-
-  const authCheck = onAuthStateChanged(auth, (user) => {
-      if (user) {
-          console.log("auth is empty");
-          
-      }else{
-        console.log("unauthorized");
-        
-      }
-    
-  })
   if (confirm) {
     signOut(auth);
     localStorage.removeItem("user");

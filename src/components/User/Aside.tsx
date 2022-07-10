@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Aside = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    const profileMenu = useRef()
+
+    const handlerClick = (e) => {
+        if (profileMenu.current.classList.contains("h-[40px]")) {
+            profileMenu.current.classList.remove("h-[40px]")
+            profileMenu.current.classList.toggle("h-[120px]")
+        }
+        else {
+            profileMenu.current.classList.toggle("h-[120px]")
+            profileMenu.current.classList.add("h-[40px]")
+        }
+    }
+
+    const closeManu = () => {
+        profileMenu.current.classList.remove("h-[120px]")
+        profileMenu.current.classList.add("h-[40px]")
+    }
+
 
     return (
         <div className="w-[180px] px-8">
@@ -15,13 +34,21 @@ const Aside = () => {
             </header>
             <div className="pt-10">
                 <ul>
-                    <li className='py-4'>
-                        <NavLink to="/user/profile" className="text-2xl" ><i className="fa-solid pr-3 fa-user"></i>Tài khoản của tôi</NavLink>
+                    <li ref={profileMenu} className='py-4 relative overflow-hidden h-[40px] duration-300' onClick={() => { handlerClick() }}>
+                        <NavLink to="/user/profile" className="text-2xl cursor-pointer" ><i className="fa-solid pr-3 fa-user"></i>Tài khoản của tôi</NavLink>
+                        <ul className='pt-4'>
+                            <li onClick={(e) => {
+                                e.stopPropagation()
+                            }} className='py-4 text-xl'><NavLink to="/user/profile" >Hồ sơ</NavLink></li>
+                            <li onClick={(e) => {
+                                e.stopPropagation()
+                            }} className='py-4 text-xl'><NavLink to="/user/change-password" >Đổi mật khẩu</NavLink></li>
+                        </ul>
                     </li>
-                    <li className='py-4'>
+                    <li onClick={() =>{closeManu()}} className='py-4'>
                         <NavLink to="/user/cart" className="text-2xl" ><i className="fa-solid pr-3 fa-cart-shopping"></i>Đơn mua</NavLink>
                     </li>
-                    <li className='py-4'>
+                    <li onClick={() =>{closeManu()}} className='py-4'>
                         <NavLink to="/user/noti" className="text-2xl" ><i className="fa-solid pr-3 fa-bell"></i>Thông báo</NavLink>
                     </li>
                 </ul>

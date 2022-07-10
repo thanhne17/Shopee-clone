@@ -1,10 +1,14 @@
 import React from 'react'
-import { FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { useForm, SubmitHandler } from "react-hook-form"
+import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import { async } from '@firebase/util'
 import { auth } from '../../firebase/index'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-type Props = {}
+type typeInput = {
+  email:String,
+  password: String
+}
 
 const SignUp = (props: Props) => {
 
@@ -40,7 +44,7 @@ const SignUp = (props: Props) => {
       const email = result.user.email;
       const image = result.user.photoURL;
 
-      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));      
+      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
 
     }).then(() => {
 
@@ -51,26 +55,41 @@ const SignUp = (props: Props) => {
 
       });
   }
-
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("user is empty");
-
+      // console.log("user is empty");
     } else {
-      console.log("unauthorized");
+      // console.log("unauthorized");
 
     }
 
   })
+  const { register, handleSubmit } = useForm<PropsPostAdd>();
+  const onSubmit: SubmitHandler<typeInput> = (data) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
 
   return (
-    <div className="p-10 bg-white rounded-md w-[400px] h-[430px]">
+    <div className="p-10 bg-white rounded-md w-[400px] min-h-[430px]">
       <header>
         <h3 className='text-4xl'>Đăng kí</h3>
       </header>
-      <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full py-10">
-          <input className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="number" placeholder='Số điện thoại' />
+          <input {...register("email")} className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="text" placeholder='Email' />
+        </div>
+        <div className="w-full pb-10">
+          <input {...register("password")} className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="password" placeholder='Password' />
         </div>
         <button className='bg-[#ee4d2d] text-center w-full h-[40px] text-white text-xl'>TIẾP THEO</button>
       </form>

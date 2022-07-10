@@ -11,6 +11,7 @@ import UserLayout from './layout/UserLayout'
 import UserProfile from './components/User/UserProfile'
 import Cart from './components/User/Cart'
 import Notify from './components/User/Notify'
+import ChangePassword from './components/User/ChangePassword'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='profile' element={<UserProfile />}  />
           <Route path='cart' element={<Cart />}  />
           <Route path='noti' element={<Notify />}  />
+          <Route path='change-password' element={<ChangePassword />}  />
         </Route>
         <Route path='auth' element={<AuthLayout />} >
           <Route path='signup' element={<SignUp />} />

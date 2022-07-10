@@ -1,30 +1,24 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { async } from '@firebase/util'
-import { FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
-// import Title from 'antd/lib/skeleton/Title'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { FacebookAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase/index'
+import { useForm } from 'react-hook-form'
 
 type Props = {}
+type typeInput = {
+  email: String,
+  password: String
+}
 
 const SIgnIn = (props: Props) => {
 
   const navigate = useNavigate();
 
-
   const handlerLoginFacebook = () => {
     const prodider = new FacebookAuthProvider();
     signInWithPopup(auth, prodider).then((result) => {
-      console.log(result);
-
-      const id = result.user.uid;
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const image = result.user.photoURL;
-      // console.log(result.user);
-
-      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
     }).then(() => {
 
       navigate("/");
@@ -36,13 +30,6 @@ const SIgnIn = (props: Props) => {
   const handlerLoginGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((result) => {
-      // console.log(result);
-      const id = result.user.uid;
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const image = result.user.photoURL;
-
-      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));      
 
     }).then(() => {
 
@@ -56,34 +43,57 @@ const SIgnIn = (props: Props) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("user is empty");
+      const id = user.uid;
+      const name = user.displayName;
+      const email = user.email;
+      const image = user.photoURL;
 
+      auth.currentUser = user
+
+      localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
     } else {
       console.log("unauthorized");
-
     }
-
   })
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/")
-
     }
-
   }, [])
 
+  const { register, handleSubmit } = useForm<PropsPostAdd>();
+  const onSubmit: SubmitHandler<typeInput> = (data) => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        const id = userCredential.user.uid;
+        const name = userCredential.user.displayName;
+        const email = userCredential.user.email;
+        const image = userCredential.user.photoURL;
+
+        localStorage.setItem("user", JSON.stringify({ id, name, email, image }));
+        navigate("/");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
   return (
     <div className="p-10 bg-white rounded-md w-[400px] h-[430px]">
       <header>
         <h3 className='text-4xl'>Đăng nhập</h3>
       </header>
-      <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full py-10">
-          <input className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="number" placeholder='Số điện thoại' />
+          <input {...register("email")} className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="text" placeholder='Email' />
         </div>
         <div className="w-full pb-10">
-          <input className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="password" placeholder='Nhập mật khẩu' />
+          <input {...register("password")} className='w-full h-[40px] border border-[#ddd] pl-3 text-xl' type="password" placeholder='Nhập mật khẩu' />
         </div>
         <button className='bg-[#ee4d2d] text-center w-full h-[40px] text-white text-xl'>TIẾP THEO</button>
       </form>

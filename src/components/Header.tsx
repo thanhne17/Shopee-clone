@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { logOut } from "../firebase/index"
+import { getCarts } from "../api/cart"
 
 type Props = {}
 
@@ -8,17 +9,27 @@ const Header = (props: Props) => {
 
     const [user, setUser] = useState({});
     const [status, setStatus] = useState(false)
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
         const getUser = JSON.parse(localStorage.getItem("user"))
         if (getUser == {} || getUser == null) {
             setStatus(false)
         }
-        else{
+        else {
             setStatus(true)
         }
+
+        const getAllCart = async () => {
+            const { data } = await getCarts();
+            setCart(data);
+        }
+
+        getAllCart()
         setUser(getUser)
-    }, [])    
+    }, [])
+    console.log(cart);
+
 
     return (
         <header className="header sticky top-0 z-50">
@@ -89,9 +100,9 @@ const Header = (props: Props) => {
                         </li>
                         <li className="header__navbar--item"><a href="" className="header__navbar--item-link"><i className="header__navbar--icon fa-solid fa-circle-question"></i>Trợ giúp</a></li>
 
-                        {status  ? (
+                        {status ? (
                             <li className="inline-block flex items-center group relative cursor-default">
-                                <img className=' w-[25px] rounded-full' src={user?.image} alt="" />
+                                <img className=' w-[25px] rounded-full' src={user?.image ? user?.image : "https://member.imagineacademy.microsoft.com/sites/all/themes/custom/ita_members/images/microsoft-img.png"} alt="" />
                                 <span className='text-white pl-2 text-2xl font-medium'>{user?.name}</span>
 
                                 <div className="header__user z-10 shadow-xl group-hover:block">
@@ -136,35 +147,21 @@ const Header = (props: Props) => {
                                 <h3>Giỏ hàng</h3>
                             </header>
                             <ul className="header__notify--list">
-                                <li className="header__notify--item header__notify--item--viewed">
-                                    <a href="" className="header__notify--link">
-                                        <img src="https://cf.shopee.vn/file/f118a77985b103de1847f51167078dee" alt="" className="header__notify--img" />
-                                        <div className="header__notify--info">
-                                            <span className="header__notify--name">Mỹ phẩm Ohui chính hãng</span>
-                                            <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li className="header__notify--item">
-                                    <a href="" className="header__notify--link">
-                                        <img src="https://cf.shopee.vn/file/f118a77985b103de1847f51167078dee" alt="" className="header__notify--img" />
-                                        <div className="header__notify--info">
-                                            <span className="header__notify--name">Mỹ phẩm Ohui chính hãng</span>
-                                            <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li className="header__notify--item">
-                                    <a href="" className="header__notify--link">
-                                        <img src="https://cf.shopee.vn/file/f118a77985b103de1847f51167078dee" alt="" className="header__notify--img" />
-                                        <div className="header__notify--info">
-                                            <span className="header__notify--name">Mỹ phẩm Ohui chính hãng</span>
-                                            <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span>
-                                        </div>
-                                    </a>
-                                </li>
+                                {cart.map((item, index) => {
+                                    return (
+                                        <li key={index} className="header__notify--item">
+                                            <a href="" className="header__notify--link">
+                                                {/* <img src="https://cf.shopee.vn/file/f118a77985b103de1847f51167078dee" alt="" className="header__notify--img" />
+                                                <div className="header__notify--info">
+                                                    <span className="header__notify--name">Mỹ phẩm Ohui chính hãng</span>
+                                                    <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span>
+                                                </div> */}
+                                                {item.id}
+                                                {item.uid}
+                                            </a>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                             <footer className="header__notify--footer">
                                 <a href="">Xem tất cả</a>

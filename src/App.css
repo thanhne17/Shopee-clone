@@ -20,6 +20,10 @@ html {
  scroll-behavior: smooth;
 }
 
+.active {
+  color: #ee4d2d;
+}
+
 .grids {
   width: 1200px;
   max-width: 100%;
