@@ -7,9 +7,9 @@ type Props = {}
 
 const Header = (props: Props) => {
 
+    const [cart, setCart] = useState([])
     const [user, setUser] = useState({});
     const [status, setStatus] = useState(false)
-    const [cart, setCart] = useState([])
 
     useEffect(() => {
         const getUser = JSON.parse(localStorage.getItem("user"))
@@ -19,16 +19,15 @@ const Header = (props: Props) => {
         else {
             setStatus(true)
         }
-
+        
         const getAllCart = async () => {
+            const userId = JSON.parse(localStorage.getItem("user")).id
             const { data } = await getCarts();
-            setCart(data);
+            setCart(data.filter(item=>item.uId == userId));                        
         }
-
         getAllCart()
         setUser(getUser)
     }, [])
-    console.log(cart);
 
 
     return (
@@ -139,8 +138,7 @@ const Header = (props: Props) => {
                     </div>
                     {/* cart */}
                     <div className="group relative">
-
-                        <i className="fa-solid fa-cart-shopping text-white text-4xl cursor-pointer"></i>
+                        <NavLink to="/cart"><i className="fa-solid fa-cart-shopping text-white text-4xl cursor-pointer"></i></NavLink>
 
                         <div className="header__notify z-10 shadow-xl group-hover:block">
                             <header className="header__notify--header">
@@ -150,14 +148,13 @@ const Header = (props: Props) => {
                                 {cart.map((item, index) => {
                                     return (
                                         <li key={index} className="header__notify--item">
-                                            <a href="" className="header__notify--link">
-                                                {/* <img src="https://cf.shopee.vn/file/f118a77985b103de1847f51167078dee" alt="" className="header__notify--img" />
+                                            <a href="" className="header__notify--link flex justify-between">
+                                                <img src={item.image} alt="" className="header__notify--img" />
                                                 <div className="header__notify--info">
-                                                    <span className="header__notify--name">Mỹ phẩm Ohui chính hãng</span>
-                                                    <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span>
-                                                </div> */}
-                                                {item.id}
-                                                {item.uid}
+                                                    <span className="header__notify--name">{item.name}</span>
+                                                    {/* <span className="header__notify--desc">Mô tả Mỹ phẩm Ohui chính hãng</span> */}
+                                                </div>
+                                                <p className='header__notify--name'>x{item.sl}</p>
                                             </a>
                                         </li>
                                     )

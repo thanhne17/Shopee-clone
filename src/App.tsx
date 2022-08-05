@@ -9,9 +9,11 @@ import AuthLayout from './layout/authLayout'
 import ProductDetail from './components/ProductDetail'
 import UserLayout from './layout/UserLayout'
 import UserProfile from './components/User/UserProfile'
-import Cart from './components/User/Cart'
+import UserCart from './components/User/Cart'
 import Notify from './components/User/Notify'
 import ChangePassword from './components/User/ChangePassword'
+import CartLayout from './layout/CartLayout'
+import Cart from "./components/Cart"
 
 function App() {
 
@@ -24,9 +26,12 @@ function App() {
         </Route>
         <Route path='user' element={<UserLayout />}>
           <Route path='profile' element={<UserProfile />}  />
-          <Route path='cart' element={<Cart />}  />
+          <Route path='cart' element={<UserCart />}  />
           <Route path='noti' element={<Notify />}  />
           <Route path='change-password' element={<ChangePassword />}  />
+        </Route>
+        <Route path='cart' element={<CartLayout />} >
+          <Route index element={<Cart /> } ></Route>
         </Route>
         <Route path='auth' element={<AuthLayout />} >
           <Route path='signup' element={<SignUp />} />

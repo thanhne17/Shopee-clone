@@ -1,4 +1,15 @@
 {
+  "cart": [
+    {
+      "idProduct": 3448419055,
+      "uId": "AurxuHXatDV8W6EJin2X9IgkfNx2",
+      "sl": 3,
+      "name": "[Mã ELHWJUL5 giảm 5% đơn 2TR] Máy Tính Xách Tay Huawei Matebook D15 (8GB/256GB) | Màn Hình HUAWEI Fullview",
+      "price": "10.989.000",
+      "image": "https://cf.shopee.vn/file/8797b9135b98a158aaebfad00c2fd44b",
+      "id": 1
+    }
+  ],
   "imgSlides": [
     {
       "id": 1,
@@ -2660,17 +2671,6 @@
         101373
       ],
       "is_shopee_food": null
-    }
-  ],
-  "cart": [
-    {
-      "id": 12235883895,
-      "uId": "zlr0e6M9iCUmDTbWy5PN3ioQMFS2"
-    },
-    {
-      "id": 17601736540,
-      "uId": "zlr0e6M9iCUmDTbWy5PN3ioQMFS2",
-      "sl": 3
     }
   ]
 }

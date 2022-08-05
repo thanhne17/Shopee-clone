@@ -1,73 +1,14 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getRecomentProduct } from "../api/recomentProducts"
-import {addCart} from "../api/cart"
-import {auth} from "../firebase/index"
+import { addCart, getCarts } from "../api/cart"
+import { useStore, action } from '../store';
 
 type Props = {}
-
-//initState 
-const initState = {
-    Product: "",
-    Products: []
-}
-
-//action
-const ADD_TO_CART = 'add_to_cart';
-const INCREASE_QUALITY = 'increase';
-const DECREASE_QUALITY = 'decrease';
-const REMOVE_PRODUCT = 'remove';
-
-const addToCart = (payload) => {
-    return {
-        type: ADD_TO_CART,
-        payload
-    }
-}
-
-const increase = (payload:any) => {
-    return {
-        type: INCREASE_QUALITY,
-        payload
-    }
-}
-
-const decrease = (payload:any) => {
-    return {
-        type: DECREASE_QUALITY,
-        payload
-    }
-}
-
-const remove = (payload:any) => {
-    return {
-        type: REMOVE_PRODUCT,
-        payload
-    }
-}
-
-//reducer 
-
-const reducer = (state, action) => {
-    switch (action.type) {
-        case ADD_TO_CART:
-            // console.log(action);
-            // console.log(state);
-            addCart(action.payload)
-            break;
-    
-        default:
-            break;
-    }
-}
-
 const ProductDetail = (props: Props) => {
+    const [state, dispatch] = useStore()    
     const [product, setProduct] = useState();
     const [quality, setQuality] = useState(1)
-
-    const [state, dispatch] = useReducer(reducer, initState);
-    
-    // const {Product, Products} = state
 
     const { id } = useParams()
 
@@ -107,7 +48,6 @@ const ProductDetail = (props: Props) => {
 
     const plusRef = useRef();
     const minusRef = useRef();
-
     return (
         <div className='bg-[#f5f5f5]'>
             <div className="grids mx-auto pt-12">
@@ -162,11 +102,14 @@ const ProductDetail = (props: Props) => {
                         </div>
 
                         <div className="flex">
-                            <div onClick={()=>{
-                                dispatch(addToCart({
-                                    id: product.id,
-                                    uId: auth.currentUser?.uid,
-                                    sl: quality
+                            <div onClick={() => {
+                                dispatch(action.addToCart({
+                                    idProduct: product.id,
+                                    uId: JSON.parse(localStorage.getItem("user")).id,
+                                    sl: quality,
+                                    name: product.name,
+                                    price: addCommas(product.price / 100000),
+                                    image: product.image
                                 }))
                             }} className="text-[#ee4d2d] rounded mr-5 text-2xl bg-[#ff57221a] px-[20px] h-[48px] min-w-[80px] max-w-[250px] flex items-center border border-[#ee4d2d] cursor-pointer hover:bg-[#ffc5b22e]">
                                 <i className="fa-solid fa-cart-plus pr-3"></i>

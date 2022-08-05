@@ -10,5 +10,15 @@ const getCarts = () => {
     return intance.get(url)
 }
 
+const removeCart = (id) => {
+    const url = `/cart/${id}`;
+    return intance.delete(url)
+}
 
-export { addCart, getCarts }
+const updateQuality = (id, data) => {
+    const url = `/cart/${id}`;
+    return intance.put(url, data)
+}
+
+
+export { addCart, getCarts, removeCart, updateQuality }
